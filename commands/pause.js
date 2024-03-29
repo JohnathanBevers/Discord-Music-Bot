@@ -6,7 +6,7 @@ module.exports = {
         .setDescription("Pauses the current song"),
 	execute: async ({ client, interaction }) => {
         // Get the queue for the server
-		const queue = client.player.getQueue(interaction.guildId)
+		const queue = await client.player.nodes.create(interaction.guild)
 
         // Check if the queue is empty
 		if (!queue)

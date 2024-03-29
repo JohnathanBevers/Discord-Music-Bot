@@ -33,7 +33,7 @@ module.exports = {
             return interaction.reply("You need to be in a Voice Channel to play a song.");
         }
         
-        const queue = await client.player.nodes.create(interaction.guild)
+        const queue = await client.player.nodes.create(interaction.guild);
     
         // Wait until you are connected to the channel
         if (!queue.connection) {
@@ -102,7 +102,7 @@ module.exports = {
             
             // Add the track to the queue
             const song = result.tracks[0]
-            song.playlist = "test";
+
             await queue.addTrack(song)
             console.log(queue);
             embed

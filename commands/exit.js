@@ -7,7 +7,7 @@ module.exports = {
 	execute: async ({ client, interaction }) => {
 
         // Get the current queue
-		const queue = client.player.getQueue(interaction.guildId)
+		const queue = await client.player.nodes.create(interaction.guild)
 
 		if (!queue)
 		{

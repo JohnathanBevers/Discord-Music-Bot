@@ -7,7 +7,7 @@ module.exports = {
         .setDescription("shows first 10 songs in the queue"),
 
     execute: async ({ client, interaction }) => {
-        const queue = client.player.getQueue(interaction.guildId)
+        const queue = await client.player.nodes.create(interaction.guild);
 
         // check if there are songs in the queue
         if (!queue || !queue.playing)
