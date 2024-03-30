@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require('discord.js');
 const { QueryType } = require("discord-player")
 
 module.exports = {
@@ -41,7 +41,6 @@ module.exports = {
             await queue.connect(interaction.member.voice.channel);
         }
 
-        const { EmbedBuilder } = require('discord.js');
         const embed = new EmbedBuilder();
 
 		if (interaction.options.getSubcommand() === "song") {
@@ -87,7 +86,7 @@ module.exports = {
 
 		} 
         else if (interaction.options.getSubcommand() === "search") {
-
+            await interaction.deferReply();
             // Search for the song using the discord-player
             let url = interaction.options.getString("searchterms", true);
             console.log(interaction);
@@ -114,7 +113,7 @@ module.exports = {
             // Play the song
             if (!queue.playing) await client.player.play(interaction.member.voice.channel, interaction.options.getString("searchterms", true))
             // Respond with the embed containing information about the player
-            await interaction.reply({
+            await interaction.editReply({
                 embeds: [embed]
             })
 		}
