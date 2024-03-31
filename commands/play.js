@@ -79,7 +79,7 @@ module.exports = {
             
             // Add the tracks to the queue
             const playlist = result.playlist
-            await queue.addTracks(result.tracks)
+            await queue.addTrack(result.tracks)
             embed
                 .setDescription(`**${result.tracks.length} songs from [${playlist.title}](${playlist.url})** have been added to the Queue`)
                 .setThumbnail(playlist.thumbnail)
@@ -111,7 +111,7 @@ module.exports = {
 
             
             // Play the song
-            if (!queue.playing) await client.player.play(interaction.member.voice.channel, interaction.options.getString("searchterms", true))
+            if (!queue.node.isPlaying()) await client.player.play(interaction.member.voice.channel, interaction.options.getString("searchterms", true))
             // Respond with the embed containing information about the player
             await interaction.editReply({
                 embeds: [embed]

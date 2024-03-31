@@ -16,7 +16,7 @@ module.exports = {
         }
 
         // Pause the current song
-		queue.setPaused(false);
+		queue.node.resume();
 
         await interaction.reply("Player has been resumed.")
 	},
